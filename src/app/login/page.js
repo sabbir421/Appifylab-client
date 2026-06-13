@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthShapes from '@/app/components/AuthShapes';
+import AuthLoader from '@/app/components/AuthLoader';
 import { loginUser, clearError } from '@/app/store/slices/authSlice';
 
 export default function LoginPage() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, loading, error } = useSelector((state) => state.auth);
   const [form, setForm] = useState({ email: '', password: '' });
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function LoginPage() {
 
   return (
     <section className="_social_login_wrapper _layout_main_wrapper">
+      {loading && <AuthLoader label="Logging in..." />}
       <AuthShapes />
       <div className="_social_login_wrap">
         <div className="container">
@@ -57,6 +59,11 @@ export default function LoginPage() {
                   <span>Or</span>
                 </div>
                 <form className="_social_login_form" onSubmit={handleSubmit}>
+                  {error && (
+                    <p className="_auth_form_error _mar_b14" role="alert">
+                      {error}
+                    </p>
+                  )}
                   <div className="row">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                       <div className="_social_login_form_input _mar_b14">
@@ -68,6 +75,7 @@ export default function LoginPage() {
                           value={form.email}
                           onChange={handleChange}
                           required
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -81,6 +89,7 @@ export default function LoginPage() {
                           value={form.password}
                           onChange={handleChange}
                           required
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -110,8 +119,8 @@ export default function LoginPage() {
                   <div className="row">
                     <div className="col-lg-12 col-md-12 col-xl-12 col-sm-12">
                       <div className="_social_login_form_btn _mar_t40 _mar_b60">
-                        <button type="submit" className="_social_login_form_btn_link _btn1">
-                          Login now
+                        <button type="submit" className="_social_login_form_btn_link _btn1" disabled={loading}>
+                          {loading ? 'Logging in...' : 'Login now'}
                         </button>
                       </div>
                     </div>

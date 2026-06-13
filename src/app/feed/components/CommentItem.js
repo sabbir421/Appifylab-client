@@ -43,7 +43,7 @@ function ReplyItem({ reply, postId, commentId }) {
                     className={reply.isLiked ? '_feed_reaction_active' : ''}
                     onClick={() => dispatch(toggleReplyLike({ replyId: reply.id, postId, commentId }))}
                   >
-                    {reply.isLiked ? 'Liked' : 'Like'}
+                    {reply.isLiked ? 'Unlike' : 'Like'}
                   </span>
                 </li>
                 <li className="_comment_time_item"><span className="_time_link">{reply.timeAgo}</span></li>
@@ -110,7 +110,7 @@ export default function CommentItem({ comment, postId, previewMode = false }) {
                     className={comment.isLiked ? '_feed_reaction_active' : ''}
                     onClick={() => dispatch(toggleCommentLike({ commentId: comment.id, postId }))}
                   >
-                    {comment.isLiked ? 'Liked' : 'Like'}
+                    {comment.isLiked ? 'Unlike' : 'Like'}
                   </span>
                 </li>
                 <li>

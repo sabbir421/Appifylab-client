@@ -4,12 +4,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthShapes from '@/app/components/AuthShapes';
+import AuthLoader from '@/app/components/AuthLoader';
 import { registerUser, clearError } from '@/app/store/slices/authSlice';
 
 export default function SignupPage() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, loading, error } = useSelector((state) => state.auth);
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -50,6 +51,7 @@ export default function SignupPage() {
 
   return (
     <section className="_social_registration_wrapper _layout_main_wrapper">
+      {loading && <AuthLoader label="Creating your account..." />}
       <AuthShapes />
       <div className="_social_registration_wrap">
         <div className="container">
@@ -79,6 +81,11 @@ export default function SignupPage() {
                   <span>Or</span>
                 </div>
                 <form className="_social_registration_form" onSubmit={handleSubmit}>
+                  {(localError || error) && (
+                    <p className="_auth_form_error _mar_b14" role="alert">
+                      {localError || error}
+                    </p>
+                  )}
                   <div className="row">
                     <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                       <div className="_social_registration_form_input _mar_b14">
@@ -90,6 +97,7 @@ export default function SignupPage() {
                           value={form.firstName}
                           onChange={handleChange}
                           required
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -103,6 +111,7 @@ export default function SignupPage() {
                           value={form.lastName}
                           onChange={handleChange}
                           required
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -116,6 +125,7 @@ export default function SignupPage() {
                           value={form.email}
                           onChange={handleChange}
                           required
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -130,6 +140,7 @@ export default function SignupPage() {
                           onChange={handleChange}
                           required
                           minLength={6}
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -143,6 +154,7 @@ export default function SignupPage() {
                           value={form.confirmPassword}
                           onChange={handleChange}
                           required
+                          disabled={loading}
                         />
                       </div>
                     </div>
@@ -167,8 +179,8 @@ export default function SignupPage() {
                   <div className="row">
                     <div className="col-lg-12 col-md-12 col-xl-12 col-sm-12">
                       <div className="_social_registration_form_btn _mar_t40 _mar_b60">
-                        <button type="submit" className="_social_registration_form_btn_link _btn1">
-                          Login now
+                        <button type="submit" className="_social_registration_form_btn_link _btn1" disabled={loading}>
+                          {loading ? 'Creating account...' : 'Register now'}
                         </button>
                       </div>
                     </div>
