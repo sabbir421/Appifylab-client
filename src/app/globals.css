@@ -1,0 +1,225 @@
+/* App-level overrides only; main design comes from /assets/css */
+
+/* Comment section responsive fixes */
+._feed_comment_count_btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+._feed_comment_count_btn:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+._feed_comment_count_btn:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+._feed_view_all_comments_btn {
+  background: none;
+  border: none;
+  color: #1890FF;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+._feed_view_all_comments_btn:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+._feed_view_all_comments_btn:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+._feed_inner_comment_box_form {
+  gap: 8px;
+}
+
+._feed_inner_comment_box_content {
+  min-width: 0;
+}
+
+._feed_inner_comment_box_icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+._comment_textarea {
+  min-height: 38px !important;
+  resize: none;
+  overflow: hidden;
+}
+
+._comment_details {
+  max-width: 100% !important;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+._comment_area {
+  min-width: 0;
+  flex: 1 1 auto;
+  max-width: calc(100% - 52px);
+}
+
+._comment_reply {
+  position: relative;
+}
+
+._comment_reply_list {
+  flex-wrap: wrap;
+  gap: 2px 10px;
+}
+
+._comment_reply_list li {
+  margin: 0;
+  white-space: nowrap;
+}
+
+._comment_reply_list li._comment_time_item span {
+  cursor: default;
+}
+
+._comment_reply_list li._comment_time_item span:hover {
+  text-decoration: none;
+}
+
+._comment_main._comment_reply_item {
+  margin-left: 40px;
+  margin-top: 12px;
+}
+
+._timline_comment_main {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  ._timline_comment_main,
+  ._feed_inner_timeline_cooment_area {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  ._feed_inner_timeline_total_reacts._padd_r24._padd_l24 {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  ._comment_area {
+    margin-left: 10px;
+    max-width: calc(100% - 46px);
+  }
+
+  ._comment_main._comment_reply_item {
+    margin-left: 20px;
+  }
+
+  ._comment_details {
+    padding: 10px 12px;
+    margin-bottom: 44px;
+  }
+
+  ._comment_reply_num {
+    bottom: -34px;
+  }
+
+  ._feed_inner_timeline_reaction {
+    flex-wrap: wrap;
+  }
+
+  ._feed_inner_comment_box {
+    padding: 6px 8px;
+  }
+
+  ._feed_inner_comment_box_content_image {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  ._feed_inner_timeline_total_reacts {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  ._feed_inner_timeline_total_reacts_txt {
+    width: 100%;
+  }
+
+  ._comment_name_title,
+  ._comment_status_text {
+    word-break: break-word;
+  }
+}
+
+._create_post_image_preview {
+  position: relative;
+  margin-top: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f6f6f6;
+}
+
+._create_post_image_preview_img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+._create_post_image_remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+._feed_inner_text_area_btn_link:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+._create_post_upload_progress {
+  margin-top: 12px;
+}
+
+._create_post_upload_progress_track {
+  width: 100%;
+  height: 8px;
+  background: #e8e8e8;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+._create_post_upload_progress_fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1890ff, #40a9ff);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+._create_post_upload_progress_label {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+}
